@@ -1,0 +1,869 @@
+{
+    "recommendation": [
+        {
+            "title": "<a href='https://clearout.io/sales-prospecting/chrome-extension/' target='_blank'>Install Chrome Extension</a>",
+            "body": "Find valid email addresses and phone numbers from LinkedIn and Sales Navigator",
+            "icon_url": ""
+        },
+        {
+            "title": "<a href='https://clearout.io/integrations/wordpress/' target='_blank'>Install WordPress Plugin</a>",
+            "body": "Capture valid emails from any of your WordPress forms",
+            "icon_url": ""
+        },
+        {
+            "title": "<a href='https://clearout.io/integrations/clearout-for-sheets/' target='_blank'>Google Sheets Add-on</a>",
+            "body": "Validate emails seamlessly in your spreadsheet",
+            "icon_url": ""
+        },
+        {
+            "title": "<a href='https://docs.clearout.io/api-overview.html' target='_blank'>Automation</a>",
+            "body": "Create bespoke email workflows using a simple API, Zapier, or Make",
+            "icon_url": ""
+        },
+        {
+            "title": "<a href='https://calendly.com/clearout/connect-to-live-support' target='_blank'>Need Help?</a>",
+            "body": "Feel free to book a live 15-minute support call",
+            "icon_url": ""
+        }
+    ],
+    "inprogress": {
+        "email_finder": {
+            "filters": {
+                "status": "in_progress",
+                "limit": 5
+            },
+            "data": []
+        },
+        "reverse_lookup": {
+            "filters": {
+                "status": "in_progress",
+                "limit": 5
+            },
+            "data": []
+        },
+        "prospect": {
+            "filters": {
+                "status": "in_progress",
+                "limit": 5
+            },
+            "data": []
+        },
+        "email_verifier": {
+            "filters": {
+                "status": "in_progress",
+                "limit": 5
+            },
+            "data": []
+        }
+    },
+    "quicklinks": [
+        {
+            "title": "<a href='/email-verifier/quick-validation'>Verify Single Email</a>",
+            "body": "Quickly verify email address in real-time",
+            "font_awesome": " fa-envelope-o"
+        },
+        {
+            "title": "<a href='/email-verifier/email-verifier-list'>Verify Bulk Emails</a>",
+            "body": "Bulk Verify Lists from HubSpot, Apollo, & More",
+            "font_awesome": " fa-list"
+        },
+        {
+            "title": "<a href='/email-finder/quick-email-finder'>Find Emails</a>",
+            "body": "Find anyone's email address with a confidence score",
+            "font_awesome": " fa-search"
+        },
+        {
+            "title": "<a href='/apps/create'>On-Form Validation</a>",
+            "body": "Prevent Form Spamming with Real-Time Verification",
+            "font_awesome": " fa-code"
+        },
+        {
+            "title": "<a href='/reverse-lookup/linkedin'>Extract Leads From LinkedIn</a>",
+            "body": "Discover the person behind a LinkedIn profile or email address",
+            "font_awesome": " fa-retweet"
+        }
+    ],
+    "didyouknow": [
+        {
+            "title": "Enhanced Phone Validation Now Built into Clearout Form Guard",
+            "body": "<p>We&#x2019;ve <strong>upgraded the phone validation layer within Clearout Form Guard</strong> to improve real-time validation accuracy and reduce junk or risky submissions before they enter your CRM.</p><p><strong>&#xA0;What&#x2019;s Improved:</strong></p><ul><li>Enhanced mobile vs VoIP vs landline classification</li><li>Reduced false positives and grey responses</li><li>More consistent validation across global networks</li></ul><p><strong>&#xA0;What This Means for You:</strong></p><ul><li>Higher lead quality at the point of capture</li><li>Cleaner CRM data without manual filtering</li><li>Better sales team efficiency</li></ul><p>These <strong>improvements are automatically applied to all forms </strong>protected by Clearout Form Guard &#x2014; <strong>no configuration changes required.</strong></p>",
+            "url": "https://changelog.clearout.io/enhanced-phone-validation-now-built-into-clearout-form-guard-2XvX2w"
+        },
+        {
+            "title": "Introducing Auto Credit Replenishment – Never Run Out of Credits Again!",
+            "body": "<p>We&#x2019;ve launched a new automated credit top-up feature to help you stay uninterrupted when using Clearout.</p><p>With Auto Credit Replenishment, your account will automatically add credits when your credit balance gets low - so your API workflows, Form Guard, bulk validations, and integrations continue running without any disruption or manual intervention.</p><h3>Key Benefits:</h3><ul><li>&#x2705; Zero downtime &#x2013; your operations never stop due to insufficient credits</li><li>&#x2705; Fully automated &#x2013; you choose the threshold and top-up amount</li><li>&#x2705; Complete control &#x2013; enable, disable, or adjust anytime</li><li>&#x2705; Instant invoices &amp; transparent billing</li></ul><p>You can enable this feature now from your&#xA0;<a href=\"https://app.clearout.io/account/manage-plans?utm_source=announcement&amp;utm_medium=inapp&amp;utm_campaign=auto_credit_replishment\" rel=\"noopener noreferrer\" target=\"_blank\"><strong>Plans</strong></a> section.</p><p>Try it today and experience uninterrupted credit usage with full automation!</p>",
+            "url": "https://changelog.clearout.io/introducing-auto-credit-replenishment---never-run-out-of-credits-again-13mq9a"
+        },
+        {
+            "title": "Cyber Monday is now LIVE!",
+            "body": "<p><strong>Thank you for an incredible Black Friday response &#x1F64F;</strong><br>For everyone who missed it or reached out asking for another chance &#x2192; here it is.</p><p><strong>30% OFF on 100K and above credits, use the code at checkout to save big.</strong></p><p>This is the perfect time to start 2026 strong &#x2192; Add credits &amp; save:</p><ul><li>Prepare for Q1 outreach &amp; onboarding</li><li>Enhance deliverability &amp; sender reputation</li><li>Avoid credit shortages during peak campaigns</li></ul><p><strong>Use code &#x2192; </strong><a href=\"https://app.clearout.io/pricing/?showbuynow=true&amp;product_id=673f2521231fd5f807a4068b&amp;quantity=100000&amp;coupon_code=CYBER30&amp;utm_source=announcement&amp;utm_medium=inapp&amp;utm_campaign=cybermonday2025\" rel=\"noopener noreferrer\" target=\"_blank\"><strong>CYBER30</strong></a><br>&#x23F3; <strong>Ends December 5 (00:00 UTC)</strong></p>",
+            "url": "https://changelog.clearout.io/cyber-monday-is-now-live-24VK8w"
+        },
+        {
+            "title": "🚨 12 Hours Left – Final Black Friday Countdown",
+            "body": "<p>Secure the <strong>biggest discount of Black Friday 2025.</strong></p><p>This year, we&#x2019;ve opened the sale to:</p><ul><li><a href=\"https://app.clearout.io/pricing?utm_source=blackfriday&amp;utm_medium=landingpage&amp;utm_campaign=co_black_friday_launch_2025_12hrs_annual\" rel=\"noopener noreferrer\" target=\"_blank\"><strong>Annual Subscriptions</strong></a><strong> (up to 50% OFF)</strong></li><li><a href=\"https://app.clearout.io/pricing?billing=payg&amp;utm_source=blackfriday&amp;utm_medium=landingpage&amp;utm_campaign=co_black_friday_launch_2025_12hrs\" rel=\"noopener noreferrer\" target=\"_blank\"><strong>Discounted PAYG credits</strong></a></li><li><strong>Best pricing for API &amp; Form Guard usage</strong></li><li><strong>Optimized deliverability for all of 2026</strong></li></ul><p>&#x23F3; <strong>When the clock hits zero, this sale disappears until next year.</strong></p><p>&#x1F449; <a href=\"https://app.clearout.io/pricing?billing=payg&amp;utm_source=blackfriday&amp;utm_medium=landingpage&amp;utm_campaign=co_black_friday_launch_2025_12hrs\" rel=\"noopener noreferrer\" target=\"_blank\"><strong>Get My Offer Now</strong></a></p>",
+            "url": "https://changelog.clearout.io/12-hours-left---final-black-friday-countdown-PIQKY"
+        },
+        {
+            "title": "Black Friday 2025 is live – and it’s our biggest yet.",
+            "body": "<p>For the first time ever, <strong>Annual Subscriptions</strong> are in the Black Friday sale with <strong>up to 50% OFF</strong> &#x2013; along with discounted <strong>PAYG credits</strong>.</p><p>What&#x2019;s on the table?<br>&#x2705; Lowest pricing ever on Annual plans<br>&#x2705; Pay-As-You-Go credits on Black Friday slabs<br>&#x2705; Perfect for uninterrupted validation all through 2026<br>&#x2705; Best value for Form Guard, APIs, campaigns, and scaling teams</p><p>The sale is now open.<br>Lock in your discounts before it ends <span style=\"text-align:start;\">&#x2192;</span> <strong>once-a-year pricing</strong>, no fluff, just savings.</p><p><a href=\"https://clearout.m-pages.com/CI2rqb/black-friday-sale-2025?utm_source=inapp&amp;utm_medium=announcement&amp;utm_campaign=co_black_friday_2025\" rel=\"noopener noreferrer\" target=\"_blank\"><strong>Grab Your Black Friday Deal &#x2192;</strong></a></p>",
+            "url": "https://changelog.clearout.io/black-friday-2025-is-live---and-it-s-our-biggest-yet.-AX9Ty"
+        }
+    ],
+    "recentactivities": [
+        {
+            "name": "clearout_email_verifier_sample_list.csv",
+            "type": "upload",
+            "email": "pradeepsan01@gmail.com",
+            "member_name": "Pradeep",
+            "member_id": "5e3d1167b44bcd54a19c2dfc",
+            "user_role": "owner",
+            "list_id": "69983db5570b5065cc505d74",
+            "created_on": "2026-02-20T10:55:53.602Z",
+            "last_verified_on": "2026-02-20T16:26:12+05:30",
+            "last_analysed_on": "2026-02-20T16:25:59+05:30",
+            "last_cancelled_on": null,
+            "last_exported_on": null,
+            "request": "bulk",
+            "action": "verify",
+            "request_id": "69983db9db2644ec9cc27912",
+            "verify_request_on": "2026-02-20T16:25:53+05:30",
+            "started_on": "2026-02-20T16:25:55+05:30",
+            "ended_on": "2026-02-20T16:26:12+05:30",
+            "stats": {
+                "total": 4,
+                "duplicate": 0,
+                "disposable": 0,
+                "role_account": 0,
+                "free_account": 0,
+                "syntax_error": 0,
+                "domains_stats": {
+                    "count": {
+                        "oracle.com": 1,
+                        "sap.com": 1,
+                        "walmart.com": 1,
+                        "fedex.com": 1
+                    }
+                },
+                "valid": 1,
+                "invalid": 2,
+                "unknown": 0,
+                "catch_all": 1,
+                "billable": 4,
+                "safe_to_send": {
+                    "yes": 0,
+                    "no": 2,
+                    "risky": 2,
+                    "unknown": 0
+                },
+                "gibberish": 0
+            },
+            "request_status": "completed",
+            "list_status": "active",
+            "source": {
+                "mode": "app",
+                "agent": "upload"
+            },
+            "account_detail": null,
+            "service_type": "email_verifier"
+        }
+    ],
+    "welcome": {
+        "user_id": "5e3d1167b44bcd54a19c2dfc",
+        "org_id": "5e3d1167b44bcd54a19c2dfc",
+        "name": "Pradeep",
+        "address": {
+            "line1": "sss",
+            "line2": "sss",
+            "postal_code": "65014",
+            "country": {
+                "value": "IN",
+                "label": "India"
+            },
+            "state": "",
+            "city": "",
+            "first_name": "jghgjg",
+            "last_name": "",
+            "company_name": "",
+            "taxId": ""
+        },
+        "email": "pradeepsan01@gmail.com",
+        "email_verified": true,
+        "credits": {
+            "available": null,
+            "subs": null,
+            "recur": null,
+            "available_daily_limit": null,
+            "reset_daily_limit_date": "2020-09-21T18:30:00.000Z",
+            "total": null
+        },
+        "credit_redeem_per_service": {
+            "email_verify": {
+                "highest_accuracy": 1,
+                "fastest_turnaround": 1
+            },
+            "email_finder": 4,
+            "prospect": {
+                "linkedin": {
+                    "person": {
+                        "email": 4,
+                        "phone": 2,
+                        "role_email": 2,
+                        "reverification": 1
+                    },
+                    "company": {
+                        "email": 4,
+                        "phone": 2,
+                        "role_email": 2,
+                        "reverification": 1
+                    }
+                }
+            },
+            "javascript_widget": {
+                "email": {
+                    "highest_accuracy": 1,
+                    "fastest_turnaround": 1
+                },
+                "phone": 1,
+                "name": 1
+            }
+        },
+        "recur": {
+            "name": "",
+            "type": "",
+            "expiry": null,
+            "credits": null,
+            "recur_credit_reset_date": null
+        },
+        "limits": {
+            "allowed_daily_limit": null,
+            "instant_email_verify_limit": {
+                "maxRequests": 60,
+                "windowIntervalInSecs": 60
+            },
+            "instant_email_finder_limit": {
+                "maxRequests": 3,
+                "windowIntervalInSecs": 60
+            },
+            "allowed_white_black_list_limit": 50,
+            "allowed_webhook_create_limit": 2
+        },
+        "status": "active",
+        "account_status": "live",
+        "payment": {
+            "stripe": {
+                "account_name": "stripe::india",
+                "is_valid_card": false
+            },
+            "paypal": {
+                "account_name": "paypal::india"
+            },
+            "s": {
+                "acap": false,
+                "alap": false
+            },
+            "auto_charge": {
+                "credits": {
+                    "threshold": 500,
+                    "quantity": 5000,
+                    "price": null,
+                    "currency": "USD",
+                    "status": "disabled",
+                    "coupon": ""
+                }
+            }
+        },
+        "subscription": [
+            {
+                "co_product_id": "241095070400180595110500",
+                "subs_id": null,
+                "name": "freemium-100-credits",
+                "product_name": "Freemium 100 credits",
+                "product_type": "plan",
+                "status": "active",
+                "start_time": "2020-02-07T07:27:36.349Z",
+                "end_time": null,
+                "product_renewal": null,
+                "price": {
+                    "currency": "USD",
+                    "total_price": 0
+                },
+                "limits": null,
+                "limits_renewal": null,
+                "limits_renewal_date": null,
+                "credits": 100,
+                "credits_renewal": null,
+                "credits_renewal_date": null,
+                "addons": [
+                    {
+                        "action": "parallel-bulk-email-verification-limit",
+                        "count": 1,
+                        "can_display": true,
+                        "order": 1
+                    },
+                    {
+                        "action": "parallel-bulk-email-finder-limit",
+                        "count": 1,
+                        "can_display": true,
+                        "order": 2
+                    },
+                    {
+                        "action": "parallel-bulk-prospect-enrich-limit",
+                        "count": 1,
+                        "can_display": true,
+                        "order": 3
+                    },
+                    {
+                        "action": "prospect-search-limit",
+                        "count": 20,
+                        "can_display": true,
+                        "order": 5
+                    },
+                    {
+                        "action": "email-verification-api-rate-limit",
+                        "count": 3,
+                        "can_display": true,
+                        "order": 6
+                    },
+                    {
+                        "action": "email-finder-api-rate-limit",
+                        "count": 3,
+                        "can_display": true,
+                        "order": 7
+                    },
+                    {
+                        "action": "google-sheet-export",
+                        "count": 0,
+                        "can_display": true,
+                        "order": 8
+                    },
+                    {
+                        "action": "team-account-upgrade",
+                        "count": 0,
+                        "can_display": true,
+                        "order": 9
+                    },
+                    {
+                        "action": "client-app-ip-limit",
+                        "count": 2,
+                        "can_display": true,
+                        "order": 10
+                    },
+                    {
+                        "action": "daily-request-limit",
+                        "count": 500000,
+                        "can_display": false,
+                        "order": 12
+                    }
+                ]
+            }
+        ],
+        "locale": {
+            "timezone": "Asia/Kolkata",
+            "utc_offset": "+05:30",
+            "currency": "INR"
+        },
+        "user_role": "owner",
+        "user_type": "organization",
+        "affiliate": null,
+        "settings": {
+            "notifications": {
+                "email_verify_success": false,
+                "list_export_success": true,
+                "list_result_expiry": true,
+                "email_verify_start": false,
+                "email_finder_start": false,
+                "email_finder_success": true,
+                "prospect_enrich_success": true,
+                "prospect_export_success": true
+            },
+            "low_credit_balance": {
+                "enable": true,
+                "already_notified": null,
+                "min_threshold": 200,
+                "email": null
+            },
+            "data_retention": {
+                "period_in_days": 30
+            },
+            "can_show_verify_mode": true,
+            "email_finder": {
+                "include_role_email": true,
+                "include_debug_info": false,
+                "strict_domain_check": true
+            },
+            "prospect": {
+                "enrich": {
+                    "person": {
+                        "email": {
+                            "all_emails": false,
+                            "business_only": true,
+                            "non_role_only": false
+                        },
+                        "phone": {
+                            "all_phones": false,
+                            "mobile_only": false,
+                            "fixed_line_only": true,
+                            "no_phones": false
+                        }
+                    },
+                    "company": {
+                        "email": {
+                            "all_emails": true,
+                            "business_only": false
+                        },
+                        "phone": {
+                            "all_phones": true,
+                            "mobile_only": false,
+                            "fixed_line_only": false,
+                            "no_phones": false
+                        }
+                    }
+                }
+            },
+            "auto_pilot_status": false,
+            "email_verify": {
+                "can_use_cached_email_verified_result": true,
+                "gibberish_threshold_value": "high",
+                "mode": "fastest_turnaround"
+            }
+        },
+        "activated_on": "2020-02-07T07:28:19+00:00",
+        "created_on": "2020-02-07T07:27:36+00:00",
+        "fresh_chat": {
+            "restore_id": "9d8dc091-5714-4e41-a33b-b6c60eb8a45a"
+        },
+        "performance_stats": {
+            "total": 7128,
+            "duplicate": 198,
+            "valid": 3089,
+            "invalid": 2603,
+            "catch_all": 1241,
+            "unknown": 702
+        },
+        "api_token": {
+            "token": "e40b2435d53f9b0e343a075e104bb697:aaed199286b7a59aa26555f8f21767ba4b80589cd850c7494569c44f2ea36a4b",
+            "created_on": "2020-11-09T10:39:06+00:00"
+        },
+        "integrations": {
+            "is_mailchimp_linked": false,
+            "is_active_campaign_linked": false,
+            "is_clevertap_linked": true,
+            "is_moosend_linked": true,
+            "is_hubspot_linked": true,
+            "is_mailerlite_linked": false,
+            "is_sendgrid_linked": false,
+            "is_automizy_linked": false,
+            "is_apollo_linked": true,
+            "is_lemlist_linked": false,
+            "is_go_high_level_linked": false,
+            "is_kit_linked": false,
+            "is_zoho_linked": false,
+            "is_skylead_linked": false
+        },
+        "phone_number": "",
+        "tags": [],
+        "can_show_email_verify_mode": true,
+        "default_email_verify_mode": "highest_accuracy",
+        "radar": {
+            "active": true,
+            "fraud_score": 0,
+            "payment": null
+        },
+        "router": {
+            "email_verify": {
+                "cote_env": null
+            },
+            "email_finder": {
+                "email_verify": {
+                    "cote_env": null
+                }
+            },
+            "prospect": {
+                "email_verify": {
+                    "cote_env": null
+                },
+                "email_finder": {
+                    "email_verify": {
+                        "cote_env": null
+                    }
+                }
+            }
+        },
+        "has_password": true,
+        "last_password_updated": "2025-11-26T10:59:35.649Z",
+        "org_details": {
+            "credits": {
+                "available": 123459385,
+                "recur": null,
+                "subs": null,
+                "available_daily_limit": 9996,
+                "reset_daily_limit_date": "2026-02-19T18:30:00.000Z",
+                "total": 123459385
+            },
+            "credit_redeem_per_service": {
+                "email_verify": {
+                    "highest_accuracy": 1,
+                    "fastest_turnaround": 1
+                },
+                "email_finder": 4,
+                "prospect": {
+                    "linkedin": {
+                        "person": {
+                            "email": 4,
+                            "phone": 2,
+                            "role_email": 2,
+                            "reverification": 1
+                        },
+                        "company": {
+                            "email": 4,
+                            "phone": 2,
+                            "role_email": 2,
+                            "reverification": 1
+                        }
+                    }
+                },
+                "javascript_widget": {
+                    "email": {
+                        "highest_accuracy": 1,
+                        "fastest_turnaround": 1
+                    },
+                    "phone": 1,
+                    "name": 1
+                }
+            },
+            "recur": {
+                "name": "",
+                "type": "",
+                "expiry": null,
+                "credits": null,
+                "recur_credit_reset_date": null
+            },
+            "limits": {
+                "allowed_daily_limit": 10000,
+                "instant_email_verify_limit": {
+                    "maxRequests": "25",
+                    "windowIntervalInSecs": "60"
+                },
+                "instant_email_finder_limit": {
+                    "maxRequests": 3,
+                    "windowIntervalInSecs": 60
+                },
+                "allowed_white_black_list_limit": 50
+            },
+            "maximum_request_queue_size": {
+                "prospect": {
+                    "add_and_enrich_lead": null,
+                    "bulk_add_and_enrich_leads": null,
+                    "enrich_lead_list": 1,
+                    "remove_leads": null,
+                    "remove_lead_list": null,
+                    "export": null
+                },
+                "reverse_lookup": {
+                    "lookup": null,
+                    "lookup_email": null
+                },
+                "verify": 5,
+                "export": 5,
+                "email_finder_bulk": 1,
+                "email_finder_instant": null
+            },
+            "locale": {
+                "timezone": "Asia/Kolkata",
+                "utc_offset": "+05:30",
+                "currency": "INR"
+            },
+            "plan": {
+                "name": "professional",
+                "type": "daily",
+                "credits": null,
+                "allowed_daily_verify_limit": "10000",
+                "user_create_limit": 2,
+                "verify_queue_limit": 5,
+                "export_queue_limit": 5,
+                "allowed_daily_limit": "500000"
+            },
+            "settings": {
+                "low_credit_balance": {
+                    "enable": true,
+                    "already_notified": "2025-09-08T13:00:02.172Z",
+                    "min_threshold": 123459966,
+                    "email": "pradeepsan01@gmail.com"
+                }
+            },
+            "performance_stats": {
+                "last_updated_on": "2026-02-20T10:56:12.079Z"
+            },
+            "_id": "5e3d1167b44bcd54a19c2dfc",
+            "name": "clearout",
+            "email": "pradeepsan01@gmail.com",
+            "status": "active",
+            "country": "IN",
+            "org_tel": "+918220421343",
+            "org_website_url": "https://clearout.io",
+            "created_by": "5e3d1167b44bcd54a19c2dfc",
+            "modified_on": "2026-02-20T10:56:12.079Z",
+            "created_on": "2020-09-22T06:50:13.801Z",
+            "modified_by": "5e3d1167b44bcd54a19c2dfc",
+            "usedMemberSeat": 2,
+            "totalMemberSeat": 2
+        },
+        "show_daily_limits": true
+    },
+    "overall": {
+        "breakdown": "DAY",
+        "user_stats": [
+            {
+                "user_id": "5e3d1167b44bcd54a19c2dfc",
+                "stats": [
+                    {
+                        "date": "2026-01-21T00:00:00.000+00:00",
+                        "total": 1,
+                        "ev_billable": 1,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-01-22T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-01-23T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-01-24T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-01-25T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-01-26T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-01-27T00:00:00.000+00:00",
+                        "total": 48,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 48,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-01-28T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-01-29T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-01-30T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-01-31T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-01T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-02T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-03T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-04T00:00:00.000+00:00",
+                        "total": 309,
+                        "ev_billable": 309,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-05T00:00:00.000+00:00",
+                        "total": 4,
+                        "ev_billable": 4,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-06T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-07T00:00:00.000+00:00",
+                        "total": 2,
+                        "ev_billable": 2,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-08T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-09T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-10T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-11T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-12T00:00:00.000+00:00",
+                        "total": 126,
+                        "ev_billable": 100,
+                        "ef_billable": 12,
+                        "prospect_billable": 8,
+                        "js_widget_billable": 6
+                    },
+                    {
+                        "date": "2026-02-13T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-14T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-15T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-16T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-17T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-18T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    },
+                    {
+                        "date": "2026-02-19T00:00:00.000+00:00",
+                        "total": 0,
+                        "ev_billable": 0,
+                        "ef_billable": 0,
+                        "prospect_billable": 0,
+                        "js_widget_billable": 0
+                    }
+                ],
+                "name": "Pradeep",
+                "email": "pradeepsan01@gmail.com",
+                "role": "owner"
+            }
+        ],
+        "timezone": "Asia/Kolkata",
+        "generated_on": "2026-02-20T10:56:12.524+00:00"
+    }
+}
