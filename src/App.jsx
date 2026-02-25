@@ -1,14 +1,16 @@
 import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "@/redux/store";
+import ProtectedRoute from "@/components/ProtectedRoute";
 
-
+const Login         = lazy(() => import("./pages/Login"));
 const Dashboard     = lazy(() => import("./pages/Dashboard"));
 const EmailVerifier = lazy(() => import("./pages/emailVerifier"));
 const EmailFinder   = lazy(() => import("./pages/emailFinder"));
 const Prospect      = lazy(() => import("./pages/prospect"));
 const Settings      = lazy(() => import("./pages/settings"));
 const Formguard     = lazy(() => import("./pages/Formguard"));
-
 
 function PageLoader() {
   return (
@@ -21,18 +23,24 @@ function PageLoader() {
   );
 }
 
-
 export default function App() {
   return (
-    <Suspense fallback={<PageLoader />}>
-      <Routes>
-        <Route path="/"              element={<Dashboard />} />
-        <Route path="/emailVerifier" element={<EmailVerifier />} />
-        <Route path="/emailFinder"   element={<EmailFinder />} />
-        <Route path="/prospect"      element={<Prospect />} />
-        <Route path="/settings"      element={<Settings />} />
-        <Route path="/Formguard"     element={<Formguard />} />
-      </Routes>
-    </Suspense>
+    <Provider store={store}>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          {/* Public */}
+          <Route path="/"      element={<Login />} />
+          <Route path="/login" element={<Login />} />
+
+          {/* Protected */}
+          <Route path="/dashboard"     element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+          <Route path="/emailVerifier" element={<ProtectedRoute><EmailVerifier /></ProtectedRoute>} />
+          <Route path="/emailFinder"   element={<ProtectedRoute><EmailFinder /></ProtectedRoute>} />
+          <Route path="/prospect"      element={<ProtectedRoute><Prospect /></ProtectedRoute>} />
+          <Route path="/settings"      element={<ProtectedRoute><Settings /></ProtectedRoute>} />
+          <Route path="/Formguard"     element={<ProtectedRoute><Formguard /></ProtectedRoute>} />
+        </Routes>
+      </Suspense>
+    </Provider>
   );
 }

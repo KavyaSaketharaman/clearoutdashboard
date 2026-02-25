@@ -11,7 +11,7 @@ import {
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { label: "Dashboard",      path: "/"  },
+  { label: "Dashboard",      path: "/Dashboard"  },
   { label: "Email Verifier", path: "/emailVerifier"},
   { label: "Email Finder",   path: "/emailFinder"},
   { label: "Prospect",       path: "/prospect"},
@@ -157,6 +157,14 @@ export default function Header() {
           >
             Buy Credits
           </Button>
+          <Button
+    onClick={() => navigate("/login")}
+    variant="outline"
+    size="sm"
+    className="h-8 px-4 text-xs border-orange-500 text-orange-500 hover:bg-orange-50 font-bold rounded-md"
+  >
+    SignOut
+  </Button>
         </div>
 
       </div>
