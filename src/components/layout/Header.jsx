@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Search, Bell, ChevronDown, X } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { clearUser } from "@/redux/userSlice";
+import { Search, Bell, ChevronDown, X, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -11,19 +13,25 @@ import {
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { label: "Dashboard",      path: "/Dashboard"  },
-  { label: "Email Verifier", path: "/emailVerifier"},
-  { label: "Email Finder",   path: "/emailFinder"},
-  { label: "Prospect",       path: "/prospect"},
-  { label: "Form Guard",     path: "/formGuard" },
-  { label: "Reverse Lookup", path: "/reverseLookup" },
-  { label: "Developer",      path: "/developer"},
+  { label: "Dashboard",      path: "/dashboard"      },
+  { label: "Email Verifier", path: "/emailVerifier"  },
+  { label: "Email Finder",   path: "/emailFinder"    },
+  { label: "Prospect",       path: "/prospect"       },
+  { label: "Form Guard",     path: "/formGuard"      },
+  { label: "Reverse Lookup", path: "/reverseLookup"  },
+  { label: "Developer",      path: "/developer"      },
 ];
 
 export default function Header() {
-  const navigate = useNavigate();
-  const location = useLocation();
+  const navigate     = useNavigate();
+  const location     = useLocation();
+  const dispatch     = useDispatch();
   const [showBanner, setShowBanner] = useState(true);
+
+  function handleSignOut() {
+    dispatch(clearUser());     // clears Redux state + localStorage
+    navigate("/login");        // redirect to login
+  }
 
   return (
     <div className="sticky top-0 z-50 w-full font-sans">
@@ -93,10 +101,7 @@ export default function Header() {
         <NavigationMenu className="max-w-none">
           <NavigationMenuList className="gap-0 flex">
             {navLinks.map((link) => {
-              const isActive =
-                link.path === "/"
-                  ? location.pathname === "/"
-                  : location.pathname.startsWith(link.path);
+              const isActive = location.pathname === link.path;
 
               return (
                 <NavigationMenuItem key={link.path} className="relative">
@@ -106,20 +111,14 @@ export default function Header() {
                       "relative cursor-pointer flex items-center gap-1.5 px-3 py-4 text-sm font-medium transition-colors select-none",
                       "bg-transparent hover:bg-transparent focus:bg-transparent",
                       "hover:text-orange-500",
-                      isActive
-                        ? "text-orange-500"
-                        : "text-gray-700"
+                      isActive ? "text-orange-500" : "text-gray-700"
                     )}
                   >
-                    {/* Active underline */}
                     {isActive && (
                       <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-orange-500 rounded-t-full" />
                     )}
-
                     <span className="text-xs opacity-70">{link.icon}</span>
                     {link.label}
-
-                    {/* New badge */}
                     {link.badge && (
                       <span className="absolute -top-0 right-0 bg-orange-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full leading-none">
                         {link.badge}
@@ -158,13 +157,14 @@ export default function Header() {
             Buy Credits
           </Button>
           <Button
-    onClick={() => navigate("/login")}
-    variant="outline"
-    size="sm"
-    className="h-8 px-4 text-xs border-orange-500 text-orange-500 hover:bg-orange-50 font-bold rounded-md"
-  >
-    SignOut
-  </Button>
+            onClick={handleSignOut}
+            variant="outline"
+            size="sm"
+            className="h-8 px-4 text-xs border-red-300 text-red-500 hover:bg-red-50 hover:border-red-400 font-bold rounded-md flex items-center gap-1.5"
+          >
+            <LogOut className="w-3.5 h-3.5" />
+            Sign Out
+          </Button>
         </div>
 
       </div>
