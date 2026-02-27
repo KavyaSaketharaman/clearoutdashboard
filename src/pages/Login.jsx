@@ -46,6 +46,8 @@ function LoginForm() {
           ? await executeRecaptcha("login")
           : "test_token";
 
+        console.log("captchaToken length:", captchaToken?.length, "token:", captchaToken);
+
         const { data } = await axios.post(`${API_BASE_URL}/user/login`, {
           username,
           password,
@@ -54,8 +56,12 @@ function LoginForm() {
 
         console.log("API response:", data);
 
-        if (data.status === "error" || data.status_code !== 200) {
-          setError(data.message ?? data.error ?? "Invalid credentials. Please try again.");
+        if (data.status === "failed" || data.status === "error" || !data.data) {
+          const errMsg =
+            (typeof data.error === "object" ? data.error?.message : data.error) ??
+            data.message ??
+            "Invalid credentials. Please try again.";
+          setError(errMsg);
           return;
         }
 
