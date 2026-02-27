@@ -16,10 +16,10 @@ const userSlice = createSlice({
   },
   reducers: {
     setUser: (state, action) => {
-      state.userInfo = action.payload;  // ← no localStorage here anymore
+      state.userInfo = action.payload; // stores full data object
     },
     clearUser: (state) => {
-      state.userInfo = null;            // ← no localStorage here anymore
+      state.userInfo = null;
     },
   },
 });

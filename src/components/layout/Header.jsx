@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { clearUser } from "@/redux/userSlice";
-import { Search, Bell, ChevronDown, X, LogOut } from "lucide-react";
+import { Search, Bell, ChevronDown, X, LogOut, Loader2 } from "lucide-react";
+import axios from "axios";
+
 import { Button } from "@/components/ui/button";
 import {
   NavigationMenu,
@@ -12,25 +14,44 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const navLinks = [
-  { label: "Dashboard",      path: "/dashboard"      },
-  { label: "Email Verifier", path: "/emailVerifier"  },
-  { label: "Email Finder",   path: "/emailFinder"    },
-  { label: "Prospect",       path: "/prospect"       },
-  { label: "Form Guard",     path: "/formGuard"      },
-  { label: "Reverse Lookup", path: "/reverseLookup"  },
-  { label: "Developer",      path: "/developer"      },
+  { label: "Dashboard",      path: "/dashboard"     },
+  { label: "Email Verifier", path: "/emailVerifier" },
+  { label: "Email Finder",   path: "/emailFinder"   },
+  { label: "Prospect",       path: "/prospect"      },
+  { label: "Form Guard",     path: "/formGuard"     },
+  { label: "Reverse Lookup", path: "/reverseLookup" },
+  { label: "Developer",      path: "/developer"     },
 ];
 
 export default function Header() {
   const navigate     = useNavigate();
   const location     = useLocation();
   const dispatch     = useDispatch();
-  const [showBanner, setShowBanner] = useState(true);
+  const [showBanner,    setShowBanner]    = useState(true);
+  const [signingOut,    setSigningOut]    = useState(false);
 
-  function handleSignOut() {
-    dispatch(clearUser());     // clears Redux state + localStorage
-    navigate("/login");        // redirect to login
+  // ── Read user from Redux ───────────────────────────────────────────────────
+  const userInfo    = useSelector((state) => state.user.userInfo);
+  const displayName = userInfo?.email ?? userInfo?.name ?? "User";
+  const initial     = displayName.charAt(0).toUpperCase();
+
+  async function handleSignOut() {
+    setSigningOut(true);
+    try {
+      await axios.get(`${API_BASE_URL}/user/logout`, {
+        headers: {
+          Authorization: userInfo?.token ? `Bearer ${userInfo.token}` : undefined,
+        },
+      });
+    } catch {
+      // proceed with local logout even if API call fails
+    } finally {
+      dispatch(clearUser());
+      navigate("/login");
+    }
   }
 
   return (
@@ -83,10 +104,10 @@ export default function Header() {
           </button>
           <div className="flex items-center gap-2 cursor-pointer group">
             <div className="w-7 h-7 rounded-full bg-orange-500 flex items-center justify-center text-white text-xs font-bold shadow">
-              K
+              {initial}
             </div>
             <span className="text-white text-sm font-medium group-hover:text-orange-300 transition-colors">
-              Kavya
+              {displayName}
             </span>
             <ChevronDown className="w-3.5 h-3.5 text-gray-400" />
           </div>
@@ -97,12 +118,10 @@ export default function Header() {
       {/* ── Bottom Nav Bar ── */}
       <div className="w-full bg-white border-b border-gray-200 px-4 flex items-center justify-between">
 
-        {/* Nav Links */}
         <NavigationMenu className="max-w-none">
           <NavigationMenuList className="gap-0 flex">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
-
               return (
                 <NavigationMenuItem key={link.path} className="relative">
                   <NavigationMenuLink
@@ -117,7 +136,6 @@ export default function Header() {
                     {isActive && (
                       <span className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-orange-500 rounded-t-full" />
                     )}
-                    <span className="text-xs opacity-70">{link.icon}</span>
                     {link.label}
                     {link.badge && (
                       <span className="absolute -top-0 right-0 bg-orange-500 text-white text-[8px] font-bold px-1.5 py-0.5 rounded-full leading-none">
@@ -129,10 +147,8 @@ export default function Header() {
               );
             })}
 
-            {/* More */}
             <NavigationMenuItem>
               <NavigationMenuLink className="cursor-pointer flex items-center gap-1 px-3 py-4 text-sm font-medium text-gray-700 hover:text-orange-500 bg-transparent hover:bg-transparent focus:bg-transparent">
-                <span className="text-xs opacity-70">⋮</span>
                 More
                 <ChevronDown className="w-3.5 h-3.5 ml-0.5" />
               </NavigationMenuLink>
@@ -140,7 +156,6 @@ export default function Header() {
           </NavigationMenuList>
         </NavigationMenu>
 
-        {/* Right Buttons */}
         <div className="flex items-center gap-2 shrink-0 pl-4">
           <Button
             variant="outline"
@@ -158,12 +173,16 @@ export default function Header() {
           </Button>
           <Button
             onClick={handleSignOut}
+            disabled={signingOut}
             variant="outline"
             size="sm"
-            className="h-8 px-4 text-xs border-red-300 text-red-500 hover:bg-red-50 hover:border-red-400 font-bold rounded-md flex items-center gap-1.5"
+            className="h-8 px-4 text-xs border-red-300 text-red-500 hover:bg-red-50 hover:border-red-400 font-bold rounded-md flex items-center gap-1.5 disabled:opacity-60"
           >
-            <LogOut className="w-3.5 h-3.5" />
-            Sign Out
+            {signingOut
+              ? <Loader2 className="w-3.5 h-3.5 animate-spin" />
+              : <LogOut className="w-3.5 h-3.5" />
+            }
+            {signingOut ? "Signing out…" : "Sign Out"}
           </Button>
         </div>
 
