@@ -7,13 +7,21 @@ const store = configureStore({
   },
 });
 
-// ── Sync logout across tabs ───────────────────────────────────────────────────
-window.addEventListener("storage", (e) => {
-  if (e.key === "auth_user" && e.newValue === null) {
-    // auth_user was removed in another tab → log out this tab too
+// ── store.subscribe syncs Redux → localStorage on every state change ──────────
+store.subscribe(() => {
+  const { userInfo } = store.getState().user;
+
+  if (userInfo) {
+    localStorage.setItem("auth_user", JSON.stringify(userInfo));
+  } else {
+    localStorage.removeItem("auth_user");
+  }
+
+  // ── Check other tabs ───────────────────────────────────────────────────────
+  const savedUser = localStorage.getItem("auth_user");
+  if (!savedUser && store.getState().user.userInfo) {
     store.dispatch(clearUser());
   }
 });
 
 export default store;
-

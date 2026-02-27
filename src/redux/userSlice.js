@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// ── Load user from localStorage on app start ──────────────────────────────────
 function loadUser() {
   try {
     const saved = localStorage.getItem("auth_user");
@@ -13,16 +12,14 @@ function loadUser() {
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    userInfo: loadUser(), // ← rehydrate from localStorage on first load
+    userInfo: loadUser(),
   },
   reducers: {
     setUser: (state, action) => {
-      state.userInfo = action.payload;
-      localStorage.setItem("auth_user", JSON.stringify(action.payload));
+      state.userInfo = action.payload;  // ← no localStorage here anymore
     },
     clearUser: (state) => {
-      state.userInfo = null;
-      localStorage.removeItem("auth_user");
+      state.userInfo = null;            // ← no localStorage here anymore
     },
   },
 });
