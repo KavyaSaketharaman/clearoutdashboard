@@ -1,39 +1,39 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { RefreshCw } from "lucide-react";
-import Header from "@/components/layout/Header";
-import UserInfoCard       from "@/components/dashboard/UserInfoCard";
-import CreditUsageChart   from "@/components/dashboard/CreditUsageChart";
-import GettingStarted     from "@/components/dashboard/GettingStarted";
-import RecommendedForYou  from "@/components/dashboard/RecommendedForYou";
-import ActionInProgress   from "@/components/dashboard/ActionInProgress";
-import RecentActivities   from "@/components/dashboard/RecentActivities";
-import DidYouKnow         from "@/components/dashboard/DidYouKnow";
+
+import UserInfoCard from "@/components/dashboard/UserInfoCard";
+import CreditUsageChart from "@/components/dashboard/CreditUsageChart";
+import GettingStarted from "@/components/dashboard/GettingStarted";
+import RecommendedForYou from "@/components/dashboard/RecommendedForYou";
+import ActionInProgress from "@/components/dashboard/ActionInProgress";
+import RecentActivities from "@/components/dashboard/RecentActivities";
+import DidYouKnow from "@/components/dashboard/DidYouKnow";
 
 export default function Dashboard() {
   const [dashboard, setDashboard] = useState(null);
-  const [loading,   setLoading]   = useState(true);
-  const [error,     setError]     = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   function fetchData() {
     setLoading(true);
     setError(null);
     axios.get("/dashboard_data.json")
       .then(({ data }) => setDashboard(data))
-      .catch((err)     => setError(err.message))
-      .finally(()      => setLoading(false));
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false));
   }
 
   useEffect(() => { fetchData(); }, []);
 
   // ── Destructure sections ───────────────────────────────────────────────────
-  const welcome         = dashboard?.welcome;
-  const stats           = dashboard?.overall;
-  const quicklinks      = dashboard?.quicklinks       ?? [];
-  const recommendations = dashboard?.recommendation   ?? [];
-  const inprogress      = dashboard?.inprogress       ?? {};
-  const activities      = dashboard?.recentactivities ?? [];
-  const didYouKnow      = dashboard?.didyouknow       ?? [];
+  const welcome = dashboard?.welcome;
+  const stats = dashboard?.overall;
+  const quicklinks = dashboard?.quicklinks ?? [];
+  const recommendations = dashboard?.recommendation ?? [];
+  const inprogress = dashboard?.inprogress ?? {};
+  const activities = dashboard?.recentactivities ?? [];
+  const didYouKnow = dashboard?.didyouknow ?? [];
 
   // ── Loading ────────────────────────────────────────────────────────────────
   if (loading) return (
@@ -64,22 +64,21 @@ export default function Dashboard() {
   // ── Render ─────────────────────────────────────────────────────────────────
   return (
     <div className="min-h-screen bg-gray-100">
-      <Header />
       <main className="max-w-[1400px] mx-auto px-6 py-6 space-y-4">
 
         {/* Top Row */}
         <div className="grid grid-cols-12 gap-4">
-          <UserInfoCard      welcome={welcome} />
-          <CreditUsageChart  stats={stats} />
-          <GettingStarted    quicklinks={quicklinks} />
+          <UserInfoCard welcome={welcome} />
+          <CreditUsageChart stats={stats} />
+          <GettingStarted quicklinks={quicklinks} />
         </div>
 
         {/* Bottom Row */}
         <div className="grid grid-cols-12 gap-4">
           <RecommendedForYou recommendations={recommendations} />
-          <ActionInProgress  inprogress={inprogress} />
-          <RecentActivities  activities={activities} />
-          <DidYouKnow        tips={didYouKnow} />
+          <ActionInProgress inprogress={inprogress} />
+          <RecentActivities activities={activities} />
+          <DidYouKnow tips={didYouKnow} />
         </div>
 
       </main>
