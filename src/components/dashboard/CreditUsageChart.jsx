@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid } from "recharts";
+import { BarChart2 } from "lucide-react";
 
 const creditChartConfig = {
   emailVerifier: { label: "Email Verifier", color: "#2dd4bf" },
@@ -12,23 +13,60 @@ const creditChartConfig = {
 
 const TIME_FILTERS = ["Today", "Y'day", "7 days", "30 days", "More..."];
 
+// Handles "DD M YYYY" (e.g. "12 2 2026") as well as ISO strings
+function toMidnight(dateVal) {
+  if (typeof dateVal === "string" && /^\d{1,2} \d{1,2} \d{4}$/.test(dateVal.trim())) {
+    const [day, month, year] = dateVal.trim().split(" ").map(Number);
+    return new Date(year, month - 1, day); // month is 0-indexed
+  }
+  const d = new Date(dateVal);
+  return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+}
+
 function filterByRange(stats, filter) {
   if (!stats?.length) return [];
-  const sorted  = [...stats].sort((a, b) => new Date(a.date) - new Date(b.date));
-  const last    = new Date(sorted[sorted.length - 1].date);
-  const daysMap = { "Today": 1, "Y'day": 2, "7 days": 7, "30 days": 30 };
-  const days    = daysMap[filter] ?? sorted.length;
-  const cutoff  = new Date(last);
-  cutoff.setDate(cutoff.getDate() - days + 1);
-  return sorted
-    .filter((d) => new Date(d.date) >= cutoff)
-    .map((d) => ({
-      date:          new Date(d.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short" }),
-      emailVerifier: d.ev_billable,
-      emailFinder:   d.ef_billable,
-      prospect:      d.prospect_billable,
-      formGuard:     d.js_widget_billable,
-    }));
+
+  // Sort ascending by date
+  const sorted = [...stats].sort((a, b) => toMidnight(a.date) - toMidnight(b.date));
+
+  // Always anchor to real today
+  const todayMid = toMidnight(new Date());
+
+  const mapItem = (d) => ({
+    date:          toMidnight(d.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short" }),
+    emailVerifier: d.ev_billable        ?? 0,
+    emailFinder:   d.ef_billable        ?? 0,
+    prospect:      d.prospect_billable  ?? 0,
+    formGuard:     d.js_widget_billable ?? 0,
+  });
+
+  if (filter === "Today") {
+    return sorted
+      .filter((d) => toMidnight(d.date).getTime() === todayMid.getTime())
+      .map(mapItem);
+  }
+
+  if (filter === "Y'day") {
+    const yesterday = new Date(todayMid);
+    yesterday.setDate(yesterday.getDate() - 1);
+    return sorted
+      .filter((d) => toMidnight(d.date).getTime() === yesterday.getTime())
+      .map(mapItem);
+  }
+
+  // "7 days" = last 7 days including today, "30 days" = last 30 including today
+  const daysBack = filter === "7 days" ? 6 : filter === "30 days" ? 29 : null;
+
+  if (daysBack !== null) {
+    const cutoff = new Date(todayMid);
+    cutoff.setDate(cutoff.getDate() - daysBack);
+    return sorted
+      .filter((d) => toMidnight(d.date) >= cutoff)
+      .map(mapItem);
+  }
+
+  // "More..." — show all data
+  return sorted.map(mapItem);
 }
 
 function sumCredits(filtered) {
@@ -46,9 +84,13 @@ function sumCredits(filtered) {
 export default function CreditUsageChart({ stats }) {
   const [activeFilter, setActiveFilter] = useState("30 days");
 
-  const allStats      = stats?.user_stats?.[0]?.stats ?? [];
+  const allStats =
+    stats?.user_stats?.[0]?.stats ??
+    (Array.isArray(stats) ? stats : []);
+
   const filteredStats = filterByRange(allStats, activeFilter);
   const creditTotals  = sumCredits(filteredStats);
+  const hasData       = filteredStats.length > 0;
 
   return (
     <Card className="col-span-12 lg:col-span-6 border-0 shadow-sm bg-white">
@@ -87,7 +129,7 @@ export default function CreditUsageChart({ stats }) {
           ))}
         </div>
 
-        {filteredStats.length > 0 ? (
+        {hasData ? (
           <ChartContainer config={creditChartConfig} className="h-[220px] w-full">
             <LineChart data={filteredStats} margin={{ top: 4, right: 8, left: -20, bottom: 0 }}>
               <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
@@ -101,8 +143,14 @@ export default function CreditUsageChart({ stats }) {
             </LineChart>
           </ChartContainer>
         ) : (
-          <div className="h-[220px] flex items-center justify-center text-sm text-muted-foreground">
-            No data for this range
+          <div className="h-[220px] flex flex-col items-center justify-center gap-3 text-center">
+            <div className="w-14 h-14 rounded-full bg-gray-50 border-2 border-dashed border-gray-200 flex items-center justify-center">
+              <BarChart2 className="w-6 h-6 text-gray-300" />
+            </div>
+            <div>
+              <p className="text-sm font-medium text-gray-400">No usage data yet</p>
+              <p className="text-xs text-gray-300 mt-0.5">Credit activity will appear here once you start verifying</p>
+            </div>
           </div>
         )}
 

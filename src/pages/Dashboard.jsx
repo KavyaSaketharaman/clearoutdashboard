@@ -31,16 +31,16 @@ export default function Dashboard() {
       },
       headers: {
         Authorization: `Bearer ${token}`,
+        'X-Co-App-Version': '32.2.11',
       },
     })
      .then(({ data }) => {
-    console.log("DASHBOARD RESPONSE:", JSON.stringify(data));  // 👈 add this line
-    if (data?.code && data?.message) {
-      setError(data.message);
-      return;
-    }
-    setDashboard(data);
-  })
+      if (data?.status === "failed" || data?.status === "error") {
+        setError(data.message ?? "Failed to load dashboard.");
+        return;
+      }
+      setDashboard(data.data ?? data);
+    })
       .catch((err) => {
         const message =
           err.response?.data?.message ??
