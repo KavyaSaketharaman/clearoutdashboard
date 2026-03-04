@@ -21,13 +21,18 @@ export default function Dashboard() {
 
   const token = useAppSelector((state) => state.user.userInfo?.token);
 
-  const fetchData = useCallback(() => {
+  const fetchData = useCallback(async () => {
     if (!token) return;
 
     setLoading(true);
     setError(null);
-    axios
-      .get(`${API_BASE_URL}/dashboard`, {
+
+    try {
+      const { data } = await axios.get<{
+        status?: string;
+        message?: string;
+        data?: DashboardData;
+      }>(`${API_BASE_URL}/dashboard`, {
         params: {
           show_widgets: "all",
           date_range:   "ps_last_7_days_including_today",
@@ -36,27 +41,30 @@ export default function Dashboard() {
           Authorization:      `Bearer ${token}`,
           "X-Co-App-Version": "32.2.11",
         },
-      })
-      .then(({ data }: { data: { status?: string; message?: string; data?: DashboardData } }) => {
-        if (data?.status === "failed" || data?.status === "error") {
-          setError(data.message ?? "Failed to load dashboard.");
-          return;
-        }
-        setDashboard((data.data ?? data) as DashboardData);
-      })
-      .catch((err: unknown) => {
-        const e = err as { response?: { data?: { message?: string; error?: string } }; message?: string };
-        const message =
-          e.response?.data?.message ??
-          e.response?.data?.error   ??
-          e.message                 ??
-          "Something went wrong.";
-        setError(message);
-      })
-      .finally(() => setLoading(false));
+      });
+
+      if (data?.status === "failed" || data?.status === "error") {
+        setError(data.message ?? "Failed to load dashboard.");
+        return;
+      }
+
+      setDashboard((data.data ?? data) as DashboardData);
+    } catch (err: unknown) {
+      const e = err as { response?: { data?: { message?: string; error?: string } }; message?: string };
+      setError(
+        e.response?.data?.message ??
+        e.response?.data?.error   ??
+        e.message                 ??
+        "Something went wrong."
+      );
+    } finally {
+      setLoading(false);
+    }
   }, [token]);
 
-  useEffect(() => { fetchData(); }, [fetchData]);
+  useEffect(() => {
+    void fetchData();
+  }, [fetchData]);
 
   const welcome         = dashboard?.welcome;
   const stats           = dashboard?.overall;
@@ -81,7 +89,7 @@ export default function Dashboard() {
         <p className="text-red-500 font-semibold">Failed to load dashboard</p>
         <p className="text-sm text-gray-400">{error}</p>
         <button
-          onClick={fetchData}
+          onClick={() => void fetchData()}
           className="flex items-center gap-2 px-4 py-2 bg-orange-500 hover:bg-orange-600 text-white text-sm font-medium rounded-md"
         >
           <RefreshCw className="w-4 h-4" /> Retry
