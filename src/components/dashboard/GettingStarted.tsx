@@ -1,7 +1,13 @@
 import { Mail, List, Search, Code2, Linkedin } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { QuickLink } from "@/types";
+import { type LucideIcon } from "lucide-react";
 
-const FA_ICON_MAP = {
+interface GettingStartedProps {
+  quicklinks: QuickLink[];
+}
+
+const FA_ICON_MAP: Record<string, LucideIcon> = {
   "fa-envelope-o": Mail,
   "fa-list":       List,
   "fa-search":     Search,
@@ -9,16 +15,17 @@ const FA_ICON_MAP = {
   "fa-retweet":    Linkedin,
 };
 
-function parseLabel(html) {
+function parseLabel(html: string): string {
   const m = html.match(/>([^<]+)</);
   return m ? m[1] : html.replace(/<[^>]+>/g, "");
 }
-function parseHref(html) {
+
+function parseHref(html: string): string {
   const m = html.match(/href=['"]([^'"]+)['"]/);
   return m ? m[1] : "#";
 }
 
-export default function GettingStarted({ quicklinks }) {
+export default function GettingStarted({ quicklinks }: GettingStartedProps) {
   return (
     <Card className="col-span-12 lg:col-span-3 border-0 shadow-sm bg-white">
       <CardHeader className="pb-3">

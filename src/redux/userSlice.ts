@@ -1,9 +1,20 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-function loadUser() {
+export interface UserInfo {
+  token: string;
+  email?: string;
+  name?: string;
+  [key: string]: unknown;
+}
+
+interface UserState {
+  userInfo: UserInfo | null;
+}
+
+function loadUser(): UserInfo | null {
   try {
     const saved = localStorage.getItem("auth_user");
-    return saved ? JSON.parse(saved) : null;
+    return saved ? (JSON.parse(saved) as UserInfo) : null;
   } catch {
     return null;
   }
@@ -13,10 +24,10 @@ const userSlice = createSlice({
   name: "user",
   initialState: {
     userInfo: loadUser(),
-  },
+  } as UserState,
   reducers: {
-    setUser: (state, action) => {
-      state.userInfo = action.payload; // stores full data object
+    setUser: (state, action: PayloadAction<UserInfo>) => {
+      state.userInfo = action.payload;
     },
     clearUser: (state) => {
       state.userInfo = null;

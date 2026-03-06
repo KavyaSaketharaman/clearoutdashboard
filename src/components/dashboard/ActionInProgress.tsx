@@ -1,13 +1,17 @@
 import { Search } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import type { InProgress, InProgressItem } from "@/types";
 
-function countInProgress(inprogress) {
-  if (!inprogress) return 0;
-  return Object.values(inprogress).reduce((acc, svc) => acc + (svc.data?.length ?? 0), 0);
+interface ActionInProgressProps {
+  inprogress: InProgress;
 }
 
-export default function ActionInProgress({ inprogress }) {
+function countInProgress(inprogress: InProgress): number {
+  return Object.values(inprogress).reduce((acc, svc) => acc + (svc?.data?.length ?? 0), 0);
+}
+
+export default function ActionInProgress({ inprogress }: ActionInProgressProps) {
   const count = countInProgress(inprogress);
 
   return (
@@ -15,9 +19,7 @@ export default function ActionInProgress({ inprogress }) {
       <CardHeader className="pb-3">
         <div className="flex items-center gap-2">
           <CardTitle className="text-base font-semibold">Action In Progress</CardTitle>
-          <Badge className="bg-orange-500 text-white text-xs rounded-full px-2 py-0.5 h-auto">
-            {count}
-          </Badge>
+          <Badge className="bg-orange-500 text-white text-xs rounded-full px-2 py-0.5 h-auto">{count}</Badge>
         </div>
         <div className="flex gap-2 mt-1">
           <button className="text-xs px-3 py-1 rounded-full bg-orange-100 text-orange-600 font-medium">All</button>
@@ -35,7 +37,7 @@ export default function ActionInProgress({ inprogress }) {
         ) : (
           <div className="space-y-3">
             {Object.entries(inprogress).flatMap(([svcKey, svc]) =>
-              (svc.data ?? []).map((item, i) => (
+              (svc?.data ?? []).map((item: InProgressItem, i: number) => (
                 <div key={`${svcKey}-${i}`} className="text-sm border-b pb-2">
                   <p className="font-medium capitalize">{svcKey.replace(/_/g, " ")}</p>
                   <p className="text-xs text-muted-foreground">{item.name ?? item.id ?? "—"}</p>

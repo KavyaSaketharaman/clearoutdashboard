@@ -1,9 +1,14 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import type { Activity } from "@/types";
 
-function activityLabel(item) {
-  const typeMap = {
+interface RecentActivitiesProps {
+  activities: Activity[];
+}
+
+function activityLabel(item: Activity): string {
+  const typeMap: Record<string, string> = {
     email_verifier: `Bulk verification of "${item.name}"`,
     email_finder:   `Email finder job "${item.name}"`,
     reverse_lookup: `Reverse lookup of "${item.name}"`,
@@ -11,14 +16,16 @@ function activityLabel(item) {
   return `${typeMap[item.service_type] ?? `"${item.name}"`} is ${item.request_status}`;
 }
 
-function activityStats(item) {
+function activityStats(item: Activity): string | null {
   if (!item.stats) return null;
   const { valid = 0, invalid = 0, catch_all = 0, unknown = 0 } = item.stats;
   return `Valid: ${valid}  ·  Invalid: ${invalid}  ·  Catch-all: ${catch_all}  ·  Unknown: ${unknown}`;
 }
 
-export default function RecentActivities({ activities }) {
-  const [activityFilter, setActivityFilter] = useState("All");
+type ActivityFilter = "All" | "Email Verifier" | "More ▾";
+
+export default function RecentActivities({ activities }: RecentActivitiesProps) {
+  const [activityFilter, setActivityFilter] = useState<ActivityFilter>("All");
 
   const filtered = activities.filter((a) => {
     if (activityFilter === "All")            return true;
@@ -35,7 +42,7 @@ export default function RecentActivities({ activities }) {
             {activities.length}
           </Badge>
           <div className="ml-auto flex gap-2 text-xs">
-            {["All", "Email Verifier", "More ▾"].map((f) => (
+            {(["All", "Email Verifier", "More ▾"] as ActivityFilter[]).map((f) => (
               <button
                 key={f}
                 onClick={() => setActivityFilter(f)}
@@ -56,9 +63,7 @@ export default function RecentActivities({ activities }) {
           filtered.map((a, i) => (
             <div key={i} className="text-sm space-y-1 border-b pb-3">
               <p className="text-muted-foreground">{activityLabel(a)}</p>
-              {a.stats && (
-                <p className="text-xs text-muted-foreground">{activityStats(a)}</p>
-              )}
+              {a.stats && <p className="text-xs text-muted-foreground">{activityStats(a)}</p>}
               <p className="text-xs text-gray-400">
                 {new Date(a.created_on).toLocaleDateString("en-GB", {
                   day: "2-digit", month: "short", year: "numeric",

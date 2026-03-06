@@ -1,14 +1,12 @@
-import Header from "./Header"
+// src/components/layout/index.tsx
+import Header from "./Header"  
 import { Outlet } from "react-router-dom"
 
-const AppLayout = () => {
-
-  return (
-    <>
-      <Header />
-      <Outlet />
-    </>
-  )
-}
+const AppLayout = () => (
+  <>
+    <Header />
+    <Outlet />
+  </>
+)
 
 export default AppLayout

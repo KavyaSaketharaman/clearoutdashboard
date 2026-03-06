@@ -1,5 +1,3 @@
-
-
 export default function Prospect() {
   return (
     <div className="min-h-screen bg-gray-50">

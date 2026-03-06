@@ -1,7 +1,13 @@
 import { Chrome, Plug, Zap, Headphones } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { Recommendation } from "@/types";
+import { type LucideIcon } from "lucide-react";
 
-const REC_ICON_MAP = [
+interface RecommendedForYouProps {
+  recommendations: Recommendation[];
+}
+
+const REC_ICON_MAP: Array<{ match: string; Icon: LucideIcon }> = [
   { match: "Chrome",    Icon: Chrome     },
   { match: "WordPress", Icon: Plug       },
   { match: "Sheets",    Icon: Zap        },
@@ -9,20 +15,21 @@ const REC_ICON_MAP = [
   { match: "Help",      Icon: Headphones },
 ];
 
-function parseLabel(html) {
+function parseLabel(html: string): string {
   const m = html.match(/>([^<]+)</);
   return m ? m[1] : html.replace(/<[^>]+>/g, "");
 }
-function parseHref(html) {
+
+function parseHref(html: string): string {
   const m = html.match(/href=['"]([^'"]+)['"]/);
   return m ? m[1] : "#";
 }
-function getIcon(title) {
-  const found = REC_ICON_MAP.find((r) => title.includes(r.match));
-  return found?.Icon ?? Chrome;
+
+function getIcon(title: string): LucideIcon {
+  return REC_ICON_MAP.find((r) => title.includes(r.match))?.Icon ?? Chrome;
 }
 
-export default function RecommendedForYou({ recommendations }) {
+export default function RecommendedForYou({ recommendations }: RecommendedForYouProps) {
   return (
     <Card className="col-span-12 lg:col-span-3 border-0 shadow-sm bg-white">
       <CardHeader className="pb-3">
@@ -30,8 +37,8 @@ export default function RecommendedForYou({ recommendations }) {
       </CardHeader>
       <CardContent className="space-y-4">
         {recommendations.map((item) => {
-          const label       = parseLabel(item.title);
-          const href        = parseHref(item.title);
+          const label         = parseLabel(item.title);
+          const href          = parseHref(item.title);
           const IconComponent = getIcon(label);
           return (
             <div key={label} className="flex items-start gap-2.5">

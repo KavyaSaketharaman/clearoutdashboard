@@ -3,6 +3,19 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from "@/components/ui/chart";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid } from "recharts";
 import { BarChart2 } from "lucide-react";
+import type { StatEntry } from "@/types";
+
+interface CreditUsageChartProps {
+  stats: { user_stats?: Array<{ stats: StatEntry[] }> } | undefined;
+}
+
+interface ChartRow {
+  date: string;
+  emailVerifier: number;
+  emailFinder: number;
+  prospect: number;
+  formGuard: number;
+}
 
 const creditChartConfig = {
   emailVerifier: { label: "Email Verifier", color: "#2dd4bf" },
@@ -11,28 +24,26 @@ const creditChartConfig = {
   formGuard:     { label: "Form Guard",     color: "#6366f1" },
 };
 
-const TIME_FILTERS = ["Today", "Y'day", "7 days", "30 days", "More..."];
+const TIME_FILTERS = ["Today", "Y'day", "7 days", "30 days", "More..."] as const;
+type TimeFilter = typeof TIME_FILTERS[number];
 
 // Handles "DD M YYYY" (e.g. "12 2 2026") as well as ISO strings
-function toMidnight(dateVal) {
+function toMidnight(dateVal: string | Date): Date {
   if (typeof dateVal === "string" && /^\d{1,2} \d{1,2} \d{4}$/.test(dateVal.trim())) {
     const [day, month, year] = dateVal.trim().split(" ").map(Number);
-    return new Date(year, month - 1, day); // month is 0-indexed
+    return new Date(year, month - 1, day);
   }
   const d = new Date(dateVal);
   return new Date(d.getFullYear(), d.getMonth(), d.getDate());
 }
 
-function filterByRange(stats, filter) {
+function filterByRange(stats: StatEntry[], filter: TimeFilter): ChartRow[] {
   if (!stats?.length) return [];
 
-  // Sort ascending by date
-  const sorted = [...stats].sort((a, b) => toMidnight(a.date) - toMidnight(b.date));
-
-  // Always anchor to real today
+  const sorted = [...stats].sort((a, b) => toMidnight(a.date).getTime() - toMidnight(b.date).getTime());
   const todayMid = toMidnight(new Date());
 
-  const mapItem = (d) => ({
+  const mapItem = (d: StatEntry): ChartRow => ({
     date:          toMidnight(d.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short" }),
     emailVerifier: d.ev_billable        ?? 0,
     emailFinder:   d.ef_billable        ?? 0,
@@ -41,35 +52,26 @@ function filterByRange(stats, filter) {
   });
 
   if (filter === "Today") {
-    return sorted
-      .filter((d) => toMidnight(d.date).getTime() === todayMid.getTime())
-      .map(mapItem);
+    return sorted.filter((d) => toMidnight(d.date).getTime() === todayMid.getTime()).map(mapItem);
   }
 
   if (filter === "Y'day") {
     const yesterday = new Date(todayMid);
     yesterday.setDate(yesterday.getDate() - 1);
-    return sorted
-      .filter((d) => toMidnight(d.date).getTime() === yesterday.getTime())
-      .map(mapItem);
+    return sorted.filter((d) => toMidnight(d.date).getTime() === yesterday.getTime()).map(mapItem);
   }
 
-  // "7 days" = last 7 days including today, "30 days" = last 30 including today
   const daysBack = filter === "7 days" ? 6 : filter === "30 days" ? 29 : null;
-
   if (daysBack !== null) {
     const cutoff = new Date(todayMid);
     cutoff.setDate(cutoff.getDate() - daysBack);
-    return sorted
-      .filter((d) => toMidnight(d.date) >= cutoff)
-      .map(mapItem);
+    return sorted.filter((d) => toMidnight(d.date) >= cutoff).map(mapItem);
   }
 
-  // "More..." — show all data
   return sorted.map(mapItem);
 }
 
-function sumCredits(filtered) {
+function sumCredits(filtered: ChartRow[]) {
   return filtered.reduce(
     (acc, d) => ({
       total:         acc.total         + d.emailVerifier + d.emailFinder + d.prospect + d.formGuard,
@@ -81,12 +83,12 @@ function sumCredits(filtered) {
   );
 }
 
-export default function CreditUsageChart({ stats }) {
-  const [activeFilter, setActiveFilter] = useState("30 days");
+export default function CreditUsageChart({ stats }: CreditUsageChartProps) {
+  const [activeFilter, setActiveFilter] = useState<TimeFilter>("30 days");
 
-  const allStats =
+  const allStats: StatEntry[] =
     stats?.user_stats?.[0]?.stats ??
-    (Array.isArray(stats) ? stats : []);
+    (Array.isArray(stats) ? (stats as StatEntry[]) : []);
 
   const filteredStats = filterByRange(allStats, activeFilter);
   const creditTotals  = sumCredits(filteredStats);
@@ -97,15 +99,13 @@ export default function CreditUsageChart({ stats }) {
       <CardHeader className="pb-2">
         <div className="flex items-center justify-between flex-wrap gap-2">
           <CardTitle className="text-base font-semibold">Credit Usage Overview</CardTitle>
-          <div className="flex items-center gap-1 text-sm">
+          <div className="flex items-center gap-1">
             {TIME_FILTERS.map((f) => (
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
                 className={`px-2 py-0.5 rounded text-xs font-medium transition-colors ${
-                  activeFilter === f
-                    ? "text-orange-500 font-bold"
-                    : "text-muted-foreground hover:text-foreground"
+                  activeFilter === f ? "text-orange-500 font-bold" : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {f}

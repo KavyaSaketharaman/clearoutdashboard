@@ -1,10 +1,15 @@
 import { useState } from "react";
 import { Info, ChevronLeft, ChevronRight } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import type { DidYouKnowTip } from "@/types";
 
-export default function DidYouKnow({ tips }) {
+interface DidYouKnowProps {
+  tips: DidYouKnowTip[];
+}
+
+export default function DidYouKnow({ tips }: DidYouKnowProps) {
   const [index, setIndex] = useState(0);
-  const tip = tips?.[index];
+  const tip   = tips?.[index];
   const total = tips?.length ?? 0;
 
   return (
@@ -38,9 +43,7 @@ export default function DidYouKnow({ tips }) {
           <div className="flex items-start gap-2">
             <Info className="w-4 h-4 text-orange-500 shrink-0 mt-0.5" />
             <div className="space-y-1.5">
-              <p className="text-sm font-semibold text-foreground leading-snug">
-                {tip.title}
-              </p>
+              <p className="text-sm font-semibold text-foreground leading-snug">{tip.title}</p>
               <div
                 className="text-xs text-muted-foreground leading-relaxed line-clamp-4 prose prose-xs max-w-none"
                 dangerouslySetInnerHTML={{ __html: tip.body }}

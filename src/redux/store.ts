@@ -7,7 +7,10 @@ const store = configureStore({
   },
 });
 
-// ── store.subscribe syncs Redux → localStorage on every state change ──────────
+export type RootState   = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+// Sync Redux → localStorage on every state change
 store.subscribe(() => {
   const { userInfo } = store.getState().user;
 
@@ -17,7 +20,7 @@ store.subscribe(() => {
     localStorage.removeItem("auth_user");
   }
 
-  // ── Check other tabs ───────────────────────────────────────────────────────
+  // Cross-tab logout
   const savedUser = localStorage.getItem("auth_user");
   if (!savedUser && store.getState().user.userInfo) {
     store.dispatch(clearUser());
